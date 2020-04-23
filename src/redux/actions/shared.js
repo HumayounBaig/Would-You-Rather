@@ -1,6 +1,6 @@
 import { getUsers } from './users';
 import { getQuestions } from './questions';
-import { getAllData } from '../utils/apiHandler';
+import { getAllData } from '../../utils/apiHandler';
 
 export function handleInitialData() {
   return dispatch => {
