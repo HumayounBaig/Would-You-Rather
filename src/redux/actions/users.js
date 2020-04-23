@@ -1,8 +1,8 @@
 export const GET_USERS = 'GET_USERS';
 
-export function getQuestions(questions) {
+export function getUsers(users) {
 	return{
         type: GET_USERS,
-        questions
+        users
     }
 }
