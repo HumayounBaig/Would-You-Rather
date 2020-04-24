@@ -23,7 +23,7 @@ function Nav(props) {
           <BarNavigator className="ml-auto mr-auto" navbar>
             <NavItem>
               <NavLink to="/">
-              <Title href="/components/">Home</Title>
+              <Title>Home</Title>
               
               </NavLink>
             </NavItem>

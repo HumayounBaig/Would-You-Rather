@@ -22,11 +22,11 @@ const Header = () => (
 )
 
 const Loader = () => (
-  <Spinner type="grow" color="primary" />
+  <Spinner color="primary" />
 )
 
 const BrandImage = () => (
-  <img src="/images/avatars/animals.png" size="medium" centered />
+  <img src="/images/avatars/logo.jpg" height="200px" size="medium" centered />
 );
 
 class Login extends Component {
@@ -41,11 +41,18 @@ class Login extends Component {
   }
 
   render() {
+    const {loading} = this.state
     return (
       <div id="login">
         <Header />
-        <Loader />
+        <BrandImage />
         <ConnectedLoginForm onLoading={this.toggleLoader} />
+        <br/>
+
+        {
+          loading &&
+          <Loader />
+        }
       </div>
     )
   }
@@ -71,10 +78,11 @@ class LoginForm extends Component {
     this.setState({
       currentUser
     })
+    this.handleSubmit()
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     const { onLoading, authenticateUser } = this.props
 
     new Promise((res, rej) => {
@@ -99,7 +107,7 @@ class LoginForm extends Component {
               />
             </div>
 
-            <Button onClick={this.handleSubmit} style={{ marginTop: 30 }} disabled={this.state.currentUser ? false : true}>Login</Button>
+            {/* <Button onClick={} style={{ marginTop: 30 }} disabled={this.state.currentUser ? false : true}>Login</Button> */}
           </div>
           
         </Col>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Media, Card, Button, Input, Row, Col, CardBody, CardTitle } from 'reactstrap';
- 
+import { Form, Media, Card, Button, Input, Row, Col, CardBody, CardTitle, CardHeader } from 'reactstrap';
+import "../styles/App.css" 
+
 function LeaderBoard(props){
 
   const medalColor = ['gold', 'silver', 'bronze']
@@ -17,27 +18,49 @@ function LeaderBoard(props){
               <Card body key={item.id}>
                 <CardBody>
                   <Row>
-                    <Col md="2">
-                      <Media object data-src={item.avatarURL} alt="" />
+                    <Col sm="8" md="8">
+                      <Card>
+                        <CardHeader style={{textAlign: "left"}}>
+                          <img src= {item.avatarURL} width= "50px" alt="" /> { " "}
+                          <span style={{fontWeight: 'bold'}}>{item.name}</span>
+                        </CardHeader>
+                        <CardBody>
+                          <Row> 
+                          </Row>
+                          <Row>
+                            <Col>
+                              Answered Questions
+                            </Col>  
+                            <Col>
+                              {item.answersNo}
+                            </Col>  
+                          </Row>              
+                          <Row>
+                            <Col>
+                              Created Questions
+                            </Col>  
+                            <Col>
+                              {item.questionsNo}
+                            </Col>  
+                          </Row>       
+
+                        </CardBody>
+                      </Card>
                     </Col>
-                    <Col>
-                      <p>{item.name}</p>
-                      <Row>
-                        <Col>
-                          Answered Questions
-                        </Col>  
-                        <Col>
-                          {item.answersNo}
-                        </Col>  
-                      </Row>              
-                      <Row>
-                        <Col>
-                          Created Questions
-                        </Col>  
-                        <Col>
-                          {item.questionsNo}
-                        </Col>  
-                      </Row>                      
+                    <Col sm="3" md="3">
+                      <Card>
+                        <CardHeader>
+                          Score
+                        </CardHeader>
+                        <CardBody>
+                          <div className= "circular-label">
+                            <div className="circle-txt">{item.questionsNo + item.answersNo}</div>
+                          </div>
+
+                        </CardBody>
+                      </Card>
+                      
+                        
                     </Col>
                   </Row>
                 </CardBody>
@@ -65,6 +88,7 @@ function mapStateToProps({ users }) {
     .sort((a, b) => a.total - b.total)
     .reverse()
     .slice(0, 3);
+    console.log(leaderboards)
 
   return {
     leaderboards

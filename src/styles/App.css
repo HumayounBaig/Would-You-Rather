@@ -28,6 +28,44 @@
   color: #61dafb;
 }
 
+.circular-label{
+  width: 40%;
+  border-radius: 50%;
+  line-height: 0;
+  background: green;
+  color: white;
+  /* NECESSARY FOR TEXT */
+  position: relative;  
+}
+
+.circular-label:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.circle-txt {
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
+  text-align: center;
+  /* NOT IMPORTANT */
+  font-family: arial, sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.card{
+  height: 100%;
+}
+
+.card-body{
+  padding: 0.25rem;
+  text-align: -webkit-center !important;
+  height: auto;
+  vertical-align: initial;
+}
+
 .col-centered{
   float: none;
   margin: 0 auto; 
