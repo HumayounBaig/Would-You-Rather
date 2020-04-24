@@ -11,6 +11,7 @@ import Nav from './Nav';
 import LeaderBoard from './LeaderBoard';
 import InvalidPath from './InvalidPath';
 import QuestionCard from './QuestionCard'
+import { Row, Col } from 'reactstrap';
 class App extends Component {
 
   componentDidMount() {
@@ -49,9 +50,11 @@ class App extends Component {
 }
 
 const Home = ({ children }) => (
-  <div>
-    {children}
-  </div>
+  <Row>
+    <Col md={{ size: 6, offset: 3 }}>
+      {children}
+    </Col>
+  </Row>
 )
 
 function mapStateToProps({ authUser }) {

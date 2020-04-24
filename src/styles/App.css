@@ -29,7 +29,7 @@
 }
 
 .circular-label{
-  width: 40%;
+  width: 60%;
   border-radius: 50%;
   line-height: 0;
   background: green;
@@ -69,6 +69,34 @@
 .col-centered{
   float: none;
   margin: 0 auto; 
+}
+
+.resultCard{
+  border: 1px solid #dedede;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.resultCard .badge {
+  position: relative;
+  margin-top: 15%;
+}
+.container{
+  overflow: hidden;
+}
+
+.triangle{
+  color: white;
+  background-color: #444;
+  box-shadow: 0 0 3px 2px rgba(0,0,0,0.8);
+  height: 100px;
+  left: -50px;
+  position: absolute;
+  top: -50px;
+  width: 100px;
+  
+  -webkit-transform: rotate(-45deg);
 }
 
 @keyframes App-logo-spin {
