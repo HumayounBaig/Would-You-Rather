@@ -70,14 +70,14 @@ class CreatePoll extends Component {
                         value= {this.state.option1}
                         onChange={this.handleChange}
                         required
-                      />
+                      /> <br/>
                       <Input 
                         id="option2"
                         placeholder= "Enter second option"
                         value= {this.state.option2}
                         onChange={this.handleChange}
                         required
-                      />
+                      /> <br/>
                       <Button disabled={disabled} color="success" >
                         Submit
                       </Button>

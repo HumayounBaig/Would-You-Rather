@@ -8,6 +8,7 @@ import store from '../store';
 import Dashboard from './Dashboard';
 import CreatePoll from './CreatePoll';
 import Nav from './Nav';
+import LeaderBoard from './LeaderBoard';
 class App extends Component {
 
   componentDidMount() {
@@ -29,7 +30,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 <Route path="/new-poll" component={CreatePoll} />
-                <Route path="/leaderboard" component={Dashboard} />
+                <Route path="/leaderboard" component={LeaderBoard} />
               </Switch>
               </>
             )
