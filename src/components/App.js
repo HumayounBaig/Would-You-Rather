@@ -7,6 +7,7 @@ import "../styles/App.css"
 import store from '../store';
 import Dashboard from './Dashboard';
 import CreatePoll from './CreatePoll';
+import Nav from './Nav';
 class App extends Component {
 
   componentDidMount() {
@@ -23,12 +24,14 @@ class App extends Component {
           )
             :
             (
+              <>
+              <Nav />
               <Switch>
-                <Route path="/" component={Dashboard} />
+                <Route exact path="/" component={Dashboard} />
                 <Route path="/new-poll" component={CreatePoll} />
                 <Route path="/leaderboard" component={Dashboard} />
               </Switch>
-
+              </>
             )
         }
 
