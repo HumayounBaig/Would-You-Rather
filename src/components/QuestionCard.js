@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Media, CardHeader, Card, Button, CardTitle, Row, Col, CardBody } from 'reactstrap';
+import { CardHeader, Card, Button, CardTitle, Row, Col, CardBody } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import InitialPoll from './InitialPoll';
-import ExpandedPoll from './ExpandedPoll'
+import ExpandedPoll from './ExpandedPoll';
+import PollResult from './PollResults';
 import "../styles/App.css"
 
 const questionTypes = {
@@ -19,8 +20,8 @@ const QuestionData = props => {
       return <InitialPoll question={ question } isAnswered={isAnswered} />
     case questionTypes.EXPANDED:
       return <ExpandedPoll question={ question } />
-    // case questionType.RESULTS:
-    //   return <PollResult question={ question } />
+    case questionTypes.RESULTS:
+      return <PollResult question={ question } />
 
     default: 
       return null;
@@ -28,22 +29,19 @@ const QuestionData = props => {
 }
 
 function QuestionCard(props) {
-  const [viewQuestion, setViewQuestion] = useState(false)
+  
+  // console.log(props)
+  const { question, author, isAnswered = null, questionType, invalidId } = props
 
-  const { question, author, isAnswered = null, questionType } = props
-  const handleClick = e => {
-    setViewQuestion(!viewQuestion)
-  };
-  if (viewQuestion === true) {
-    return <Redirect push to={`/questions/${question.id}`} />;
+  if(invalidId){
+    return <Redirect to="/questions/invalid" />
   }
-
-
+  console.log(author)
 
   return (
     <div>
       <Row>
-        <Col sm="12">
+        <Col sm="12" md="12">
           <Card body>
             <CardHeader style={{textAlign: 'left'}}>
               <span style={{fontWeight: 'bold'}}>
@@ -53,10 +51,10 @@ function QuestionCard(props) {
             </CardHeader>
             <CardBody>
               <Row>
-                <Col sm="2" md="2">
+                <Col sm="4" md="4">
                   <img src={author.avatarURL} alt="" width="150px" />
                 </Col>
-                <Col>
+                <Col sm="8" md="8">
                   <QuestionData
                     question={question}
                     questionType={questionType}
@@ -74,30 +72,39 @@ function QuestionCard(props) {
   );
 }
 
-function mapStateToProps({users, questions, authUser}, {match, questionId}) {
-  let question, questionType;
+function mapStateToProps({users, questions, authUser}, {match, questionId}) { 
+
+  let question, questionType, invalidId = false;
+  let author;
   if(questionId){
     question = questions[questionId];
+    author = users[question.author];
     questionType = questionTypes.INITIAL;
   }else{
     const {questionId} = match.params;
     question = questions[questionId];
     const user = users[authUser.value];
 
-    questionType = questionTypes.EXPANDED;
+    if(question === undefined) {
+      invalidId = true
+    } else{
+      questionType = questionTypes.EXPANDED;
 
-    if (Object.keys(user.answers).includes(questionId)){
-      questionType = questionTypes.RESULTS;
+      if (Object.keys(user.answers).includes(questionId)){
+        questionType = questionTypes.RESULTS;
+      }
+      author = users[question.author];
     }
     
-  }
 
-  const author = users[question.author];
+  }
+  
 
   return {
     question,
     author,
-    questionType 
+    questionType,
+    invalidId
   }
 } 
 
