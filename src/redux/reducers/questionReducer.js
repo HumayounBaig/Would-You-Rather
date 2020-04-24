@@ -1,6 +1,7 @@
 import { 
   GET_QUESTIONS,
-  ADD_QUESTION 
+  ADD_QUESTION ,
+  ADD_QUESTION_ANSWER
 } from '../actions/questions';
 
 export default function questions(state = {}, action) {
@@ -16,6 +17,19 @@ export default function questions(state = {}, action) {
       return{
         ...state,
         [question.id]: question
+      }
+    
+    case ADD_QUESTION_ANSWER:
+      const { authUser, qid, answer } = action;
+      return{
+        ...state,
+        [qid]: {
+          ...state[qid],
+          [answer]: {
+            ...state[qid][answer],
+            votes: state[qid][answer].votes.concat(authUser)
+          }
+        }
       }
 
 

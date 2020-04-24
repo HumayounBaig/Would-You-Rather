@@ -28,8 +28,18 @@ export function addQuestion(question){
      
 }
 
+export function addQuestionAnswer(authUser, qid, answer) {
+    return {
+        type: ADD_QUESTION_ANSWER,
+        authUser,
+        qid,
+        answer
+    }
+}
+
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
-export const ADD_QUESTION = 'ADD_QUESTION'
+export const ADD_QUESTION = 'ADD_QUESTION';
+export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER';
 
 
