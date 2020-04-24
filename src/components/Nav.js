@@ -22,13 +22,13 @@ function Nav(props) {
         <Collapse isOpen={isOpen} navbar>
           <BarNavigator className="ml-auto mr-auto" navbar>
             <NavItem>
-              <Title tag={Link} to="/" exact activeClassName="active" >Home</Title>
+              <Title tag={Link} to="/" >Home</Title>
             </NavItem>
             <NavItem>
-                <Title tag={Link} to="/new-poll" activeClassName="active" >New Question</Title>
+                <Title tag={Link} to="/new-poll" >New Question</Title>
             </NavItem>
             <NavItem>
-              <Title tag={Link} to="/leaderboard" activeClassName="active" >Leader Boards</Title>
+              <Title tag={Link} to="/leaderboard" >Leader Boards</Title>
             </NavItem> 
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

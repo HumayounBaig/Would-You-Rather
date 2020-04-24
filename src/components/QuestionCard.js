@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { CardHeader, Card, Button, CardTitle, Row, Col, CardBody } from 'reactstrap';
+import { CardHeader, Card,   Row, Col, CardBody } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import InitialPoll from './InitialPoll';
 import ExpandedPoll from './ExpandedPoll';
@@ -30,13 +30,11 @@ const QuestionData = props => {
 
 function QuestionCard(props) {
   
-  // console.log(props)
   const { question, author, isAnswered = null, questionType, invalidId } = props
 
   if(invalidId){
     return <Redirect to="/questions/invalid" />
   }
-  console.log(author)
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap'
@@ -29,5 +29,10 @@ function InitialPoll({ question, isAnswered }) {
   )
 
 }
+
+InitialPoll.propTypes = {
+  question: PropTypes.object.isRequired,
+  isAnswered: PropTypes.bool.isRequired,
+};
 
 export default InitialPoll

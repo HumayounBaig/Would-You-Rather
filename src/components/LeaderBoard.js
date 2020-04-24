@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Media, Card, Button, Input, Row, Col, CardBody, CardTitle, CardHeader } from 'reactstrap';
+import { Card, Row, Col, CardBody, CardHeader } from 'reactstrap';
 import "../styles/App.css" 
+import PropType from 'prop-types'
 
 function LeaderBoard(props){
 
@@ -78,6 +79,10 @@ function LeaderBoard(props){
   );
 }
 
+LeaderBoard.propType = {
+  leaderboards: PropType.array.isRequired
+};
+
 function mapStateToProps({ users }) {
   const leaderboards = Object.values(users)
     .map(user => ({
@@ -91,7 +96,6 @@ function mapStateToProps({ users }) {
     .sort((a, b) => a.total - b.total)
     .reverse()
     .slice(0, 3);
-    console.log(leaderboards)
 
   return {
     leaderboards

@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
 import { Progress, Badge, Row, Col, Button } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -21,7 +19,6 @@ function PollResult(props) {
   const optionTwoVotes = question.optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
   const userVote = user.answers[question.id];
-  console.log(user)
   let option1 = "secondary",
     option2 = "secondary";
   if (optionOneVotes > optionTwoVotes) {

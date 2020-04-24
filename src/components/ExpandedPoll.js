@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { connect } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../redux/actions/users';
 
 function ExpandedPoll(props) {
   const [isChecked, setIsChecked] = useState("");
-
-  useEffect(() => {
-    console.log("cameo")
-   
-  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -46,7 +39,7 @@ function ExpandedPoll(props) {
               type="radio" 
               name="radio1" 
               value="optionTwo" 
-              checked={isChecked === "optionOne"}
+              checked={isChecked === "optionTwo"}
               onChange={handleChange}
             />{' '}
             {question.optionTwo.text}

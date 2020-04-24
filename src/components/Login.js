@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { authenticateUser } from '../redux/actions/auth';
-import { Row, Col, Card, CardHeader, CardBody, CardTitle, Spinner, FormGroup, Form, Label, Button, } from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardBody, CardTitle, Spinner, Label, } from 'reactstrap'
 import Select, {components} from 'react-select';
 import {withRouter} from 'react-router-dom'
 
@@ -26,7 +26,7 @@ const Loader = () => (
 )
 
 const BrandImage = () => (
-  <img src="/images/avatars/logo.jpg" height="200px" size="medium" centered />
+  <img src="/images/avatars/logo.jpg" alt="" height="200px" size="medium" />
 );
 
 class Login extends Component {
@@ -104,7 +104,7 @@ class LoginForm extends Component {
     const { Option } = components;
     const IconOption = (props) => (
       <Option {...props}>
-        <img src={props.data.image.src} width="20px" /> {" "}
+        <img src={props.data.image.src} alt="" width="20px" /> {" "}
         {props.data.label}
       </Option>
     );

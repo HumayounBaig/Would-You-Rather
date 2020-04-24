@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { handleInitialData } from '../redux/actions/shared';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import QuestionCard from './QuestionCard'
 import "../styles/App.css"
