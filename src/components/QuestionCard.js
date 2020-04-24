@@ -2,19 +2,43 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Media, CardHeader, Card, Button, CardTitle, Row, Col, CardBody } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
+import InitialPoll from './InitialPoll';
+import ExpandedPoll from './ExpandedPoll'
 import "../styles/App.css"
+
+const questionTypes = {
+  INITIAL : 'INITIAL',
+  EXPANDED : 'EXPANDED',
+  RESULTS : 'RESULTS',
+};
+
+const QuestionData = props => {
+  const { questionType, question, isAnswered } = props; 
+  switch (questionType){
+    case questionTypes.INITIAL:
+      return <InitialPoll question={ question } isAnswered={isAnswered} />
+    case questionTypes.EXPANDED:
+      return <ExpandedPoll question={ question } />
+    // case questionType.RESULTS:
+    //   return <PollResult question={ question } />
+
+    default: 
+      return null;
+  }
+}
 
 function QuestionCard(props) {
   const [viewQuestion, setViewQuestion] = useState(false)
 
-  const { question, user, isAnswered } = props
-
+  const { question, author, isAnswered = null, questionType } = props
   const handleClick = e => {
     setViewQuestion(!viewQuestion)
   };
   if (viewQuestion === true) {
     return <Redirect push to={`/questions/${question.id}`} />;
   }
+
+
 
   return (
     <div>
@@ -23,22 +47,22 @@ function QuestionCard(props) {
           <Card body>
             <CardHeader style={{textAlign: 'left'}}>
               <span style={{fontWeight: 'bold'}}>
-                {user.name}
+                {author.name}
               </span> asks:
 
             </CardHeader>
             <CardBody>
               <Row>
-                <Col md="2">
-                  <Media object data-src={user.avatarURL} alt="" />
+                <Col sm="2" md="2">
+                  <img src={author.avatarURL} alt="" width="150px" />
                 </Col>
                 <Col>
-                  <p>Would you rather</p>
-                  <p className="text-center">{question.optionOne.text}...</p>
-                  <br/>
-                  <Button  color="primary" onClick={handleClick}>
-                    View Poll
-                  </Button>
+                  <QuestionData
+                    question={question}
+                    questionType={questionType}
+                    isAnswered={isAnswered}
+                  />
+                  
                 </Col>
               </Row>
             </CardBody>
@@ -50,10 +74,30 @@ function QuestionCard(props) {
   );
 }
 
-function mapStateToProps({users}, props) {
-  const user = users[props.userId];
+function mapStateToProps({users, questions, authUser}, {match, questionId}) {
+  let question, questionType;
+  if(questionId){
+    question = questions[questionId];
+    questionType = questionTypes.INITIAL;
+  }else{
+    const {questionId} = match.params;
+    question = questions[questionId];
+    const user = users[authUser.value];
+
+    questionType = questionTypes.EXPANDED;
+
+    if (Object.keys(user.answers).includes(questionId)){
+      questionType = questionTypes.RESULTS;
+    }
+    
+  }
+
+  const author = users[question.author];
+
   return {
-    user 
+    question,
+    author,
+    questionType 
   }
 } 
 
