@@ -3,7 +3,6 @@ import { handleInitialData } from '../redux/actions/shared';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import NavBar from './Nav'
 import classnames from 'classnames';
 import QuestionCard from './QuestionCard'
 import "../styles/App.css"
@@ -19,7 +18,6 @@ function Dashboard(props) {
 
   return (
     <div>
-      <NavBar />
       <Row className="Dashboard">
         <Col className="col-centered" md={{ size: 5, offset: 4 }}>
           <Nav tabs>
