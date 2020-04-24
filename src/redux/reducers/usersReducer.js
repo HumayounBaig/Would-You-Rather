@@ -1,6 +1,6 @@
 import { 
   GET_USERS,
-  ADD_QUESTION
+  ADD_USER_QUESTION
 
 } from '../actions/users';
 
@@ -12,8 +12,8 @@ export default function users(state = {}, action) {
         ...action.users
       };
 
-      case ADD_QUESTION: 
-      const { id, author } = action; 
+      case ADD_USER_QUESTION: 
+      const { author, id } = action;  
       return {
         ...state,
         [author]: {
