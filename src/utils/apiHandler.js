@@ -2,7 +2,7 @@ import {
     _getUsers,
     _getQuestions,
     _saveQuestion,
-    _saveQuestionAnswer
+    _saveQuestionAnswer,
 } from '../_DATA';
 
 export const getAllData = () => {
@@ -11,4 +11,8 @@ export const getAllData = () => {
             users, questions
         })
     );
+}
+
+export const saveQuestion = (question) => {
+    return _saveQuestion(question)
 }
