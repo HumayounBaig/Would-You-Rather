@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { authenticateUser } from '../redux/actions/auth';
-import { Collapse, NavLink, UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu, Media, Navbar, NavbarToggler, NavItem, Nav as BarNavigator } from 'reactstrap'
+import { Collapse, UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu, Media, Navbar, NavbarToggler, NavItem, Nav as BarNavigator, NavLink as Title } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 function Nav(props) {
 
@@ -21,13 +22,20 @@ function Nav(props) {
         <Collapse isOpen={isOpen} navbar>
           <BarNavigator className="ml-auto mr-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Home</NavLink>
+              <Link to="/">
+              <Title href="/components/">Home</Title>
+              
+              </Link>
             </NavItem>
             <NavItem>
-              <NavLink >New Question</NavLink>
+              <Link to="/new-poll">
+                <Title >New Question</Title>
+              </Link>
             </NavItem>
             <NavItem>
-              <NavLink >Leader Boards</NavLink>
+              <Link to="/leaderboard">
+              <Title >Leader Boards</Title>
+              </Link>
             </NavItem> 
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

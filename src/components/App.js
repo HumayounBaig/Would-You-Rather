@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { handleInitialData } from '../redux/actions/shared';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './Login'
 import "../styles/App.css"
 import store from '../store';
 import Dashboard from './Dashboard';
-
+import CreatePoll from './CreatePoll';
 class App extends Component {
 
   componentDidMount() {
@@ -21,10 +21,15 @@ class App extends Component {
           authUser === null ? (
             <Route path="/" component={Login} />
           )
-          :
-          (
-            <Route path="/" component={Dashboard} />
-          )
+            :
+            (
+              <Switch>
+                <Route path="/" component={Dashboard} />
+                <Route path="/new-poll" component={CreatePoll} />
+                <Route path="/leaderboard" component={Dashboard} />
+              </Switch>
+
+            )
         }
 
       </div>
