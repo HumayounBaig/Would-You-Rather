@@ -19,7 +19,7 @@ function InitialPoll({ question, isAnswered }) {
       <p>Would you rather</p>
       <p className="text-center">{question.optionOne.text}...</p>
       <br />
-      <Button color="primary" onClick={handleClick}>
+      <Button color={isAnswered ? "primary" : "success" } onClick={handleClick}>
         {
           isAnswered ? 'Results' : 'Answer Poll'
         }
