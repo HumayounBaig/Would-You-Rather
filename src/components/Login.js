@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { authenticateUser } from '../redux/actions/auth';
 import { Row, Col, Card, CardHeader, CardBody, CardTitle, Spinner, FormGroup, Form, Label, Button, } from 'reactstrap'
 import Select, {components} from 'react-select';
-
+import {withRouter} from 'react-router-dom'
 
 const Header = () => (
   <Row className="header">
@@ -48,7 +48,7 @@ class Login extends Component {
           <Col style={{textAlign: 'center'}}>
             <Header />
             <BrandImage />
-            <ConnectedLoginForm onLoading={this.toggleLoader} />
+            <ConnectedLoginForm onLoading={this.toggleLoader} history={this.props.history} />
             <br/>
 
             {
@@ -93,7 +93,10 @@ class LoginForm extends Component {
     new Promise((res, rej) => {
       onLoading();
       setTimeout(() => res(), 500);
-    }).then(() => authenticateUser(this.state.currentUser));
+    }).then(() => {
+      authenticateUser(this.state.currentUser)
+      this.props.history.push("/")
+    });
   }
 
   render() {
@@ -143,4 +146,4 @@ const ConnectedLoginForm = connect(
   { authenticateUser }
 )(LoginForm)
 
-export default Login;
+export default withRouter(Login);
