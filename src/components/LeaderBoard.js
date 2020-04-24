@@ -5,20 +5,23 @@ import "../styles/App.css"
 
 function LeaderBoard(props){
 
-  const medalColor = ['gold', 'silver', 'bronze']
+  const medalColor = ['gold', 'silver', 'saddlebrown']
 
   const { leaderboards } = props
 
   return (
     <div>
       <Row>
-        <Col sm="12" className="col-centered" md={{ size: 5, offset: 4 }}>
+        <Col sm="12" className="col-centered" >
           {
             leaderboards.map((item, index) => (
-              <Card body key={item.id}>
+              <Card body key={item.id} className="container">
+                <div style={{backgroundColor: `${medalColor[index]}`}} className="triangle">
+                </div>
+
                 <CardBody>
                   <Row>
-                    <Col sm="8" md="8">
+                    <Col sm="9" md="9">
                       <Card>
                         <CardHeader style={{textAlign: "left"}}>
                           <img src= {item.avatarURL} width= "50px" alt="" /> { " "}

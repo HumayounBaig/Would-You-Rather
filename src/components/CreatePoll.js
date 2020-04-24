@@ -51,7 +51,7 @@ class CreatePoll extends Component {
     return (
       <div>
         <Row>
-          <Col sm="12" className="col-centered" md={{ size: 5, offset: 4 }}>
+          <Col sm="12" className="col-centered">
             <Card body>
               <CardHeader style={{ textAlign: 'left' }}>
                 <span style={{ fontWeight: 'bold' }}>

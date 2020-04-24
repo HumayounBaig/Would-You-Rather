@@ -19,7 +19,7 @@ function Dashboard(props) {
   return (
     <div>
       <Row className="Dashboard">
-        <Col className="col-centered" md={{ size: 5, offset: 4 }}>
+        <Col className="col-centered">
           <Nav tabs>
             <NavItem>
               <NavLink
