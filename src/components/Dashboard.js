@@ -44,8 +44,7 @@ function Dashboard(props) {
                 questionsData.unanswered.map((question) => (
                   <QuestionCard 
                     key={question.id}
-                    userId={question.author}
-                    question={question}
+                    questionId={question.id}
                     isAnswered={false}
                   />
                 ))
@@ -56,8 +55,7 @@ function Dashboard(props) {
                 questionsData.answered.map((question) => (
                   <QuestionCard 
                     key={question.id}
-                    userId={question.author}
-                    question={question}
+                    questionId={question.id}
                     isAnswered={true}
                   />
                 ))
