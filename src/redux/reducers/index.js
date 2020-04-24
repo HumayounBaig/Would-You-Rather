@@ -5,7 +5,7 @@ import questions from './questionReducer';
 import users from './usersReducer';
 
 export default combineReducers({
-  auth,
+  authUser: auth,
   questions,
   users
 });
