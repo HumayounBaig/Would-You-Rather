@@ -22,8 +22,11 @@ function QuestionCard(props) {
       <Row>
         <Col sm="12">
           <Card body>
-            <CardHeader>
-              <CardTitle>{`${user.name} asks:`}</CardTitle>
+            <CardHeader style={{textAlign: 'left'}}>
+              <span style={{fontWeight: 'bold'}}>
+                {user.name}
+              </span> asks:
+
             </CardHeader>
             <CardBody>
               <Row>

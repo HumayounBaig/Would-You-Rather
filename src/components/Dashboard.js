@@ -21,7 +21,7 @@ function Dashboard(props) {
     <div>
       <NavBar />
       <Row className="Dashboard">
-        <Col className="col-centered" md={{ size: 6, offset: 3 }}>
+        <Col className="col-centered" md={{ size: 5, offset: 4 }}>
           <Nav tabs>
             <NavItem>
               <NavLink
