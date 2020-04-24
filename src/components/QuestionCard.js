@@ -12,7 +12,6 @@ function QuestionCard(props) {
   const handleClick = e => {
     setViewQuestion(!viewQuestion)
   };
-  console.log(props)
   if (viewQuestion === true) {
     return <Redirect push to={`/questions/${question.id}`} />;
   }
@@ -52,8 +51,6 @@ function QuestionCard(props) {
 }
 
 function mapStateToProps({users}, props) {
-  console.log(props);
-  console.log(users)
   const user = users[props.userId];
   return {
     user 
