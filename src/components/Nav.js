@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect, useStore } from 'react-redux';
+import { connect } from 'react-redux';
 import { authenticateUser } from '../redux/actions/auth';
-import { Row, Col, Card, CardHeader, CardBody, CardTitle, Spinner, Navbar, NavbarBrand, NavbarToggler, NavItem, } from 'reactstrap'
-import Select from 'react-select';
+import { Collapse, NavLink, UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu, Media, Navbar, NavbarToggler, NavItem, Nav as BarNavigator } from 'reactstrap'
 
 function Nav(props) {
 
@@ -11,48 +9,54 @@ function Nav(props) {
     e.preventDefault();
     props.authenticateUser(null);
   }
+  const [isOpen, setIsOpen] = useState(false);
 
-  const Header = () => (
-    <Row className="header">
-      <Col>
-        <Card>
-          <CardHeader>
-            <h3>Would You Rather!</h3>
-          </CardHeader>
-          <CardBody>
-            <CardTitle>Login to start playing</CardTitle>
-          </CardBody>
-        </Card>
-      </Col>
-    </Row>
-  )
-
-  const Loader = () => (
-    <Spinner type="grow" color="primary" />
-  )
-
-  const BrandImage = () => (
-    <img src="/images/avatars/animals.png" size="medium" centered />
-  );
+  const toggle = () => setIsOpen(!isOpen);
+  const {authUser} = props
 
   return (
     <div id="Nav">
-       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Navbar color="light" light expand="md">
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <BarNavigator className="ml-auto mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink >New Question</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink >Leader Boards</NavLink>
+            </NavItem> 
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                <Media object data-src={authUser.image.src} alt="" />
+                {authUser.label}
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem onClick={onLogout}>
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </BarNavigator>
+        </Collapse>
+
       </Navbar>
     </div>
   )
 
 }
 
-function mapStateToProps({users, currentUser}){
+function mapStateToProps({ users, authUser }) {
   return {
     users,
-    currentUser
+    authUser
   }
 }
 
-export default connect (
+export default connect(
   mapStateToProps,
-  { authenticateUser } 
+  { authenticateUser }
 )(Nav)
