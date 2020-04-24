@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Login'
 import "../styles/App.css"
-import store from '../store';
 import Dashboard from './Dashboard';
 import CreatePoll from './CreatePoll';
 import Nav from './Nav';
@@ -19,7 +18,7 @@ class App extends Component {
   }
 
   render() {
-    const { authUser } = store.getState();
+    const { authUser } = this.props;
     return (
       <div className="App">
 
@@ -57,10 +56,11 @@ const Home = ({ children }) => (
   </Row>
 )
 
-function mapStateToProps({ authUser }) {
-  return (
-    authUser
-  )
+function mapStateToProps(state) {
+  return {
+    authUser: state.authUser
+  }
+  
 }
 
 export default connect(
