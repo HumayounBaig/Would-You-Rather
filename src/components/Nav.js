@@ -32,7 +32,7 @@ function Nav(props) {
             </NavItem> 
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                <Media object data-src={authUser.image.src} alt="" />
+                <img src={authUser.image.src} width="30px" alt="" /> {" "}
                 {authUser.label}
               </DropdownToggle>
               <DropdownMenu right>
