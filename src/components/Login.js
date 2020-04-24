@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { authenticateUser } from '../redux/actions/auth';
 import { Row, Col, Card, CardHeader, CardBody, CardTitle, Spinner, FormGroup, Form, Label, Button, } from 'reactstrap'
-import Select from 'react-select';
+import Select, {components} from 'react-select';
 
 
 const Header = () => (
@@ -43,16 +43,21 @@ class Login extends Component {
   render() {
     const {loading} = this.state
     return (
-      <div id="login">
-        <Header />
-        <BrandImage />
-        <ConnectedLoginForm onLoading={this.toggleLoader} />
-        <br/>
+      <div id="login text-center" > 
+        <Row>
+          <Col style={{textAlign: 'center'}}>
+            <Header />
+            <BrandImage />
+            <ConnectedLoginForm onLoading={this.toggleLoader} />
+            <br/>
 
-        {
-          loading &&
-          <Loader />
-        }
+            {
+              loading &&
+              <Loader />
+            }
+          </Col>
+        </Row>
+        
       </div>
     )
   }
@@ -93,17 +98,24 @@ class LoginForm extends Component {
 
   render() {
     const { currentUser } = this.state;
-
+    const { Option } = components;
+    const IconOption = (props) => (
+      <Option {...props}>
+        <img src={props.data.image.src} width="20px" /> {" "}
+        {props.data.label}
+      </Option>
+    );
     return (
       <Row>
-        <Col md={{size: 6}}>
-          <div style={{alignItems: 'center'}}>
+        <Col md={{ size: 4, offset: 4 }}>
+          <div>
             <Label for="exampleEmail">Select your Username to start playing</Label>
-            <div style={{ width: "50%", marginLeft: "25%" }}>
+            <div style={{ width: "50%", marginLeft: "25%", textAlign: 'left' }}>
               <Select
                 value={currentUser}
                 onChange={this.handleChange}
                 options={this.generateDropdownData()}
+                components={{ Option: IconOption }}
               />
             </div>
 
