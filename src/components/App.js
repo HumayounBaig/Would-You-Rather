@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import CreatePoll from './CreatePoll';
 import Nav from './Nav';
 import LeaderBoard from './LeaderBoard';
+import InvalidPath from './InvalidPath';
 class App extends Component {
 
   componentDidMount() {
@@ -19,22 +20,26 @@ class App extends Component {
     const { authUser } = store.getState();
     return (
       <div className="App">
-        {
-          authUser === null ? (
-            <Route path="/" component={Login} />
-          )
+
+          {
+            authUser === null ? (
+              <Route render ={()=> (<Login />)} />
+            )
             :
             (
               <>
-              <Nav />
-              <Switch>
-                <Route exact path="/" component={Dashboard} />
-                <Route path="/new-poll" component={CreatePoll} />
-                <Route path="/leaderboard" component={LeaderBoard} />
-              </Switch>
+                <Nav />
+                <Switch>
+                  <Route exact path="/" component={Dashboard} />
+                  <Route path="/new-poll" component={CreatePoll} />
+                  <Route path="/leaderboard" component={LeaderBoard} />
+                  <Route component={InvalidPath}  />
+                </Switch>
+                  
               </>
             )
-        }
+
+          }
 
       </div>
     );
