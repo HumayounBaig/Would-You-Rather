@@ -14,12 +14,11 @@ class App extends Component {
   }
 
   render() {
-    const { auth } = store.getState();
-
+    const { authUser } = store.getState();
     return (
       <div className="App">
         {
-          auth === null ? (
+          authUser === null ? (
             <Route path="/" component={Login} />
           )
           :
@@ -33,9 +32,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
+function mapStateToProps({ authUser }) {
   return (
-    auth
+    authUser
   )
 }
 
