@@ -12,6 +12,10 @@ const questionTypes = {
   EXPANDED : 'EXPANDED',
   RESULTS : 'RESULTS',
 };
+//questionType(child) is being set based on the parameters
+//if questionId (url param) is null then return InitialPoll component
+//if questionId is received then check to see if the question is already answered
+//if already answered ? show PollResult component else show Expanded poll component.
 
 const QuestionData = props => {
   const { questionType, question, isAnswered } = props; 
