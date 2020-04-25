@@ -95,7 +95,6 @@ class LoginForm extends Component {
       setTimeout(() => res(), 500);
     }).then(() => {
       authenticateUser(this.state.currentUser)
-      this.props.history.push("/")
     });
   }
 
@@ -121,8 +120,6 @@ class LoginForm extends Component {
                 components={{ Option: IconOption }}
               />
             </div>
-
-            {/* <Button onClick={} style={{ marginTop: 30 }} disabled={this.state.currentUser ? false : true}>Login</Button> */}
           </div>
           
         </Col>
