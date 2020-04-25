@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, CardHeader, Card, Button, Input, Row, Col, CardBody } from 'reactstrap';
+import { Form, CardHeader, Card, Button, Input, Row, Col, CardBody, Spinner } from 'reactstrap';
 import { addQuestion } from '../redux/actions/questions'
 import { Redirect } from 'react-router-dom';
-
+ 
 class CreatePoll extends Component {
 
   state = {
@@ -21,6 +21,9 @@ class CreatePoll extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({
+      isLoading: true
+    })
     const {authUser, addQuestion} = this.props
     const {option1, option2} = this.state
 
@@ -43,8 +46,8 @@ class CreatePoll extends Component {
   }
 
   render() {
-    const disabled = this.state.option1 === "" || this.state.option2 === ""
-
+    const disabled = this.state.option1 === "" || this.state.option2 === "" || this.state.isLoading
+    const {isLoading} = this.state
     if(this.state.isSubmit){
       return <Redirect to = '/' />
     }
@@ -79,7 +82,12 @@ class CreatePoll extends Component {
                         required
                       /> <br/>
                       <Button disabled={disabled} color="success" >
-                        Submit
+                        {
+                          isLoading ?
+                          <Spinner color="white" />
+                          :
+                          "Submit"
+                        }
                       </Button>
                     </Form>
                    
