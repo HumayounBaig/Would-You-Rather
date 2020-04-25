@@ -25,7 +25,7 @@ function Nav(props) {
               <Title tag={Link} to="/" >Home</Title>
             </NavItem>
             <NavItem>
-                <Title tag={Link} to="/new-poll" >New Question</Title>
+                <Title tag={Link} to="/add" >New Question</Title>
             </NavItem>
             <NavItem>
               <Title tag={Link} to="/leaderboard" >Leader Boards</Title>
