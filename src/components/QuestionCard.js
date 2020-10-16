@@ -41,7 +41,7 @@ function QuestionCard(props) {
   }
 
   return (
-    <div>
+    <div style={{ margin: 10 }}>
       <Row>
         <Col sm="12" md="12">
           <Card body>

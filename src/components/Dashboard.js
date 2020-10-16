@@ -25,7 +25,7 @@ function Dashboard(props) {
                 className={classnames({ active: activeTab === '1' })}
                 onClick={() => { toggle('1'); }}
               >
-                Unanswered Questions
+                <label style={{ fontWeight: activeTab === '1' ? 'bold' : 'normal'}}>Unanswered Questions</label>
             </NavLink>
             </NavItem>
             <NavItem>
@@ -33,7 +33,7 @@ function Dashboard(props) {
                 className={classnames({ active: activeTab === '2' })}
                 onClick={() => { toggle('2'); }}
               >
-                Answered Questions
+                <label style={{ fontWeight: activeTab === '2' ? 'bold' : 'normal'}}>Answered Questions</label>
             </NavLink>
             </NavItem>
           </Nav>
