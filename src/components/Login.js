@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { authenticateUser } from '../redux/actions/auth';
-import { Row, Col, Card, CardHeader, CardBody, CardTitle, Spinner, Label, } from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardBody, CardTitle, Spinner, Label, Button } from 'reactstrap'
 import Select, {components} from 'react-select';
 import {withRouter} from 'react-router-dom'
 
@@ -83,7 +83,6 @@ class LoginForm extends Component {
     this.setState({
       currentUser
     })
-    this.handleSubmit()
   }
 
   handleSubmit = (e) => {
@@ -112,7 +111,7 @@ class LoginForm extends Component {
         <Col md={{ size: 4, offset: 4 }}>
           <div>
             <Label for="exampleEmail">Select your Username to start playing</Label>
-            <div style={{ width: "50%", marginLeft: "25%", textAlign: 'left' }}>
+            <div style={{ width: "50%", marginLeft: "25%", textAlign: 'left', marginBottom: 10 }}>
               <Select
                 value={currentUser}
                 onChange={this.handleChange}
@@ -120,6 +119,7 @@ class LoginForm extends Component {
                 components={{ Option: IconOption }}
               />
             </div>
+            <Button disabled={this.state.currentUser === null} onClick={() => this.handleSubmit()} color="primary">Login</Button>
           </div>
           
         </Col>
